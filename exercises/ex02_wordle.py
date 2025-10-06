@@ -13,6 +13,12 @@ def input_guess(expected_length: int) -> str:
     return guess
 
 
+"""I am slightly confused on deciphering when to use brackets vs sqaure
+parentheses. I know we use square parentheses on an index, so I assume the
+brackets are for assertion purposes when an int for length isn't explicitly
+stated or needed, like in this exercise."""
+
+
 def contains_char(word: str, single_character: str) -> bool:
     "Checks if a single character is found in the given word."
     assert len(single_character) == 1, f"len('{single_character}') is not 1"
@@ -22,6 +28,10 @@ def contains_char(word: str, single_character: str) -> bool:
             return True
         index += 1
     return False
+
+
+"""In the contains_char function, the guess word is being analyzed
+ to see if any character it contains matches that of the secret word."""
 
 
 def emojified(guess: str, secret: str) -> str:
@@ -42,6 +52,14 @@ def emojified(guess: str, secret: str) -> str:
                 emoji_string += WHITE_BOX
         index += 1
     return emoji_string
+
+
+"""In the emojified function, emojis for certain character and word matches
+are being asserted in the cases of a character of guess word matching that of the
+secret word precisely, or in the case of the yellow box, not exact but close. I was
+confused when asserting the box colors at first because the number/letter combos
+defining them kept being corrected into using only lowercase letters, which
+at first I thought would be an issue."""
 
 
 def main(secret: str = "munch") -> None:
