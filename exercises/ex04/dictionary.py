@@ -4,11 +4,11 @@ __author__ = "730859653"
 
 
 def invert(input: dict[str, str]) -> dict[str, str]:
-    inverted = {}
+    inverted: dict[str, str] = {}
     for key in input:
         value = input[key]
         # value of inverted dict is the key of input dict
-        if inverted[key] == input[key]:  # encounter more than one of same key
+        if value in inverted:  # encounter more than one of same key
             raise KeyError(f"Duplicate key after inversion: {value}")
         inverted[value] = key
         # key of inverted dict is the value of input dict
@@ -16,7 +16,7 @@ def invert(input: dict[str, str]) -> dict[str, str]:
 
 
 def favorite_color(favs: dict[str, str]) -> str:
-    frequency = {}
+    frequency: dict[str, int] = {}
     # count frequency
     for name in favs:
         color = favs[name]
@@ -43,7 +43,7 @@ functions easier to navigate."""
 
 
 def count(values: list[str]) -> dict[str, int]:
-    my_dict = {}
+    my_dict: dict[str, int] = {}
     for value in values:
         if value in my_dict:
             my_dict[value] = my_dict[value] + 1
@@ -54,7 +54,7 @@ def count(values: list[str]) -> dict[str, int]:
 
 
 def alphabetizer(words: list[str]) -> dict[str, list[str]]:
-    letters_words = {}
+    letters_words: dict[str, list[str]] = {}
     for word in words:  # looking through words in the list
         first_letter = word[0]  # stating where first_letter is in word
         if first_letter in letters_words:
@@ -69,6 +69,9 @@ def update_attendance(
     attendance_log: dict[str, list[str]], day: str, student: str
 ) -> None:
     if day in attendance_log:  # checks to make sure day exists in log
+        for name in attendance_log[day]:
+            if name == student:
+                return  # exit loop, don't add duplicate name
         attendance_log[day].append(student)  # add student to existing list
     else:  # if day isn't in log, add student to begin new list
         attendance_log[day] = [student]
