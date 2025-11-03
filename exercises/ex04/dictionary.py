@@ -3,10 +3,11 @@
 __author__ = "730859653"
 
 
-def invert(input: dict[str, str]) -> dict[str, str]:
+def invert(input_dict: dict[str, str]) -> dict[str, str]:
+    """Inverts a dictionary's key-value pairs."""
     inverted: dict[str, str] = {}
-    for key in input:
-        value = input[key]
+    for key in input_dict:
+        value = input_dict[key]
         # value of inverted dict is the key of input dict
         if value in inverted:  # encounter more than one of same key
             raise KeyError(f"Duplicate key after inversion: {value}")
@@ -16,6 +17,7 @@ def invert(input: dict[str, str]) -> dict[str, str]:
 
 
 def favorite_color(favs: dict[str, str]) -> str:
+    """Finds favorite color in dictionary."""
     frequency: dict[str, int] = {}
     # count frequency
     for name in favs:
@@ -37,12 +39,8 @@ def favorite_color(favs: dict[str, str]) -> str:
     return most_popular
 
 
-"""Was stuck trying to figure out how not to use an if...in statement,
-then saw on count function it was recommended so that made the other
-functions easier to navigate."""
-
-
 def count(values: list[str]) -> dict[str, int]:
+    """Finds each instance of a color, counts instances."""
     my_dict: dict[str, int] = {}
     for value in values:
         if value in my_dict:
@@ -54,6 +52,7 @@ def count(values: list[str]) -> dict[str, int]:
 
 
 def alphabetizer(words: list[str]) -> dict[str, list[str]]:
+    """Assigns words to their first letter in dictionary."""
     letters_words: dict[str, list[str]] = {}
     for word in words:  # looking through words in the list
         first_letter = word[0]  # stating where first_letter is in word
@@ -68,6 +67,7 @@ def alphabetizer(words: list[str]) -> dict[str, list[str]]:
 def update_attendance(
     attendance_log: dict[str, list[str]], day: str, student: str
 ) -> None:
+    """Updates attendance log for a class of students every day."""
     if day in attendance_log:  # checks to make sure day exists in log
         for name in attendance_log[day]:
             if name == student:
@@ -75,3 +75,4 @@ def update_attendance(
         attendance_log[day].append(student)  # add student to existing list
     else:  # if day isn't in log, add student to begin new list
         attendance_log[day] = [student]
+    return None
